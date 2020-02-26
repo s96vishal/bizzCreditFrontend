@@ -1,0 +1,28 @@
+<div class="card" *ngIf="!isLoading">
+    <div class="card-header text-center"><h5>{{isp.name |uppercase}}</h5><span class="close-button" (click)="close()">X</span></div> 
+    <div class="card-body">
+        <img [src]="apiUrl+isp.image" class="img-fluid" alt="">
+        <p class="card-text mt-3"><span><fa-icon [icon]="faWifi"></fa-icon>Max speed</span> <span class="card-left-text">{{isp.max_speed}} MBPS</span></p>
+        <p class="card-text"> <span><fa-icon [icon]="faPhone"></fa-icon>Contact</span><span class="card-left-text">{{isp.contact_number}}</span></p>
+        <p class="card-text"><span><fa-icon [icon]="faMail"></fa-icon>Email</span><span class="card-left-text">{{isp.email}}</span></p>
+        <p class="card-text"><span><fa-icon [icon]="faMoney"></fa-icon>Min Plan</span><span class="card-left-text">&#8377; {{isp.lowest_price}}</span></p>
+        <hr>
+        <h5 class="rating">Rating : 
+          <span *ngFor ="let star of starList"><fa-icon  class="star" [ngClass]='{unfilled : !star}' [icon]="faStar"></fa-icon>
+            <!-- <fa-icon  class="star unfilled" [icon]="faStar"></fa-icon> -->
+          </span>
+          </h5>
+        <div class="footer">
+          <p>{{isp.description}}</p>
+        </div>
+        <div class="buttonContainer">
+          <a href="#" class="btn btn-outline-primary mr-3 share-button"><fa-icon [icon]="faShare"></fa-icon>Share</a>
+          <button href="#" class="btn btn-outline-danger mr-3 download-button" (click)="onSave()"><fa-icon [icon]="faDownload"></fa-icon>Download</button>
+          <a [href]="isp.url" target="_blank" class="btn btn-outline-warning mr-3 visit-button"><fa-icon [icon]="faLocation"></fa-icon>Visit Page</a>
+        </div>
+
+    </div>
+  </div>
+  <div *ngIf="isLoading" class="loader">
+   <p><fa-icon [icon]="faSpinner"></fa-icon>Loading...</p> 
+  </div>

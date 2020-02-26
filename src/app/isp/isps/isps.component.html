@@ -1,0 +1,30 @@
+<div class="container-fluid overview">
+    <div class="search-box">
+        <form action="">
+            <input type="text" class="form-control" placeholder="Search ISP here... (Not implemented Yet)">
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-xl-8 col-lg-8">
+            <ul class="list-group">
+                <li class="list-group-item d-flex align-content-center" *ngFor="let isp of ispProviders">
+                    <img [src]="apiUrl+'/images/'+isp.image" [alt]="isp.name" class="mr-2 small-image"> {{isp.name | uppercase}} 
+                    <div class="ml-auto">&#8377; {{isp.lowest_price}} 
+                        <a [routerLink]="['isp',isp._id]" class="details">See Details &gt;</a>
+                    </div>
+                </li>
+              </ul>
+            <div class="sort-container">
+                <p class="sort-box"><fa-icon [icon]="faSort"></fa-icon>Sort By</p>
+                <div class="sort-button">
+                    <input type="radio" name="sort" (click)="onClick('-rating')">Rating
+                    <input type="radio" name="sort" (click)="onClick('lowest_price')">Price
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
